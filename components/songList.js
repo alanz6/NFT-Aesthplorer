@@ -3,6 +3,8 @@ import Song from "./song"
 import { millisToMinutesAndSeconds } from "../utils";
 
 export default function SongList({ tracks }) {
+    console.log(tracks[0])
+
     const renderSong = ({ item, index }) => (
         <Song
           index={index}
@@ -10,7 +12,9 @@ export default function SongList({ tracks }) {
           title={item.name}
           artists={item.artists[0].name}
           albumName={item.album.name}
-          duration={millisToMinutesAndSeconds(item.duration_ms)} />
+          duration={millisToMinutesAndSeconds(item.duration_ms)}
+          external_urls={item.external_urls}
+          preview_url={item.preview_url} />
       );
 
     return (
