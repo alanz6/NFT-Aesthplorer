@@ -1,5 +1,5 @@
 import SpotifyAuthButton from './button';
-import Song from './song';
-import SongList from './songList';
+import Song from './genre';
+import SongList from './genreList';
 
 export { SpotifyAuthButton, Song, SongList };

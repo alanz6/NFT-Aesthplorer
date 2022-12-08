@@ -1,29 +1,21 @@
 import { StyleSheet, SafeAreaView, Text, Pressable, FlatList } from "react-native";
-import { useSpotifyAuth, millisToMinutesAndSeconds } from "./utils";
 import { Themes } from "./assets/Themes";
-import {SpotifyAuthButton, SongList} from "./components";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import DetailedSong from "./components/detailed_song";
-import Preview from "./components/preview";
+import DetailedNft from "./components/detailed_nft";
+import GenreList from "./components/genreList";
+import NFTList from "./components/nftList";
 
 function HomeScreen({ navigation }) {
-  // Pass in true to useSpotifyAuth to use the album ID (in env.js) instead of top tracks
-  const { token, tracks, getSpotifyAuth } = useSpotifyAuth(true);
-
-  let contentDisplayed = null;
-
-  if (token) {
-    contentDisplayed =
-      <SongList tracks={tracks} testID={"SongList"}/>
-  } else {
-    contentDisplayed = <SpotifyAuthButton getAuthFunction={getSpotifyAuth} testID={"AuthButton"}>
-    </SpotifyAuthButton>
-  }
+  const genres = ["cyberpunk", "avant-garde", "futurism", "impressionism", "lo-fi", "alternative", "cubism", "surrealism"]
 
   return (
     <SafeAreaView style={styles.container}>
-      {contentDisplayed}
+      <Pressable onPress={() => navigation.navigate('GenreList', {genres: genres})}>
+        <Text style={styles.text}>
+          Start!
+        </Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
@@ -43,8 +35,9 @@ export default function App() {
           },
         }}>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-        <Stack.Screen name="DetailedSong" component={DetailedSong} />
-        <Stack.Screen name="Preview" component={Preview} />
+        <Stack.Screen name="DetailedNft" component={DetailedNft}/>
+        <Stack.Screen name="GenreList" component={GenreList}/>
+        <Stack.Screen name="NFTList" component={NFTList}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
