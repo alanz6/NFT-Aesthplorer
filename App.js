@@ -11,9 +11,12 @@ function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={() => navigation.navigate('GenreList', {genres: genres})}>
+      <Pressable style={styles.container} onPress={() => navigation.navigate('GenreList', {genres: genres})}>
+      <Text style={styles.text}>
+          NFT Aesthplorer
+      </Text>
         <Text style={styles.text}>
-          Start!
+          Press here to start!
         </Text>
       </Pressable>
     </SafeAreaView>
@@ -36,8 +39,8 @@ export default function App() {
         }}>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
         <Stack.Screen name="DetailedNft" component={DetailedNft}/>
-        <Stack.Screen name="GenreList" component={GenreList}/>
-        <Stack.Screen name="NFTList" component={NFTList}/>
+        <Stack.Screen name="GenreList" component={GenreList} options={{title: "Aesthetics"}}/>
+        <Stack.Screen name="NFTList" component={NFTList} options={{title: "NFTs"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -45,13 +48,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Themes.colors.background,
+    backgroundColor: Themes.colors.white,
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
   },
   text: {
     fontSize: 32,
-    color: Themes.colors.white
-  },
+    fontFamily: "AmericanTypewriter-Bold",
+    color: "cornflowerblue"
+  }
 });
